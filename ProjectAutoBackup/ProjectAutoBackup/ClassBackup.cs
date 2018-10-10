@@ -10,32 +10,17 @@ namespace ProjectAutoBackup
 {
     class ClassBackup
     {
-        private static Timer timer;
-        private static int timerPeriod;
+        public static Timer timer;
+        private static int timerPeriod = 1000*10;
 
         private static List<string> listPaths;
         private static string pathFolderDestCa = @"D:\BACKUP\";
         private static string pathFolderDestCb = "";
 
         /// <summary>
-        /// Constructeur
-        /// </summary>
-        public ClassBackup()
-        {
-            try
-            {
-                InitListPaths();
-                InitialisationTimer();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-
-        /// <summary>
         /// démarrage du timer dont la période est spécifiée en variable globale de classe
         /// </summary>
-        private static void InitialisationTimer()
+        public static void InitialisationTimer()
         {
             //instanciation
             timer = new Timer();

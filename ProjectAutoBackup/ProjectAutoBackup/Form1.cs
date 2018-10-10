@@ -12,6 +12,8 @@ namespace ProjectAutoBackup
 {
     public partial class Form1 : Form
     {
+        ClassBackup classBackup;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +21,14 @@ namespace ProjectAutoBackup
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ClassBackup classBackup = new ClassBackup();
+            ClassBackup.InitialisationTimer();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClassBackup.timer.Dispose();
+            ClassBackup.timer = null;
+            Application.Exit();
         }
     }
 }
