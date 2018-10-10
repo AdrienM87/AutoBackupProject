@@ -16,5 +16,10 @@ namespace ProjectAutoBackup
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ClassBackup classBackup = new ClassBackup();
+        }
     }
 }
