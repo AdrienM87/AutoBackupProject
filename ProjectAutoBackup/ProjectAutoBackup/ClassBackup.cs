@@ -56,6 +56,10 @@ namespace ProjectAutoBackup
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             DateTime currentDate = DateTime.Now;
+
+            BackupFolders(currentDate);
+            DeleteOlderDirs(pathFolderDestCa, currentDate);
+
             Console.WriteLine("backup at {0:HH:mm:ss.fff}", e.SignalTime);
         }
 
