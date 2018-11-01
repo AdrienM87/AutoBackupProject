@@ -11,7 +11,7 @@ namespace ProjectAutoBackup
     class ClassBackup
     {
         public static Timer timer;
-        private static int timerPeriod = 1000*10;
+        private static int timerPeriod = 1000*60*60;
 
         private static List<string> listPaths;
         private static string pathFolderDestCa = @"D:\BACKUP\";
@@ -31,6 +31,7 @@ namespace ProjectAutoBackup
             timer.AutoReset = true;
             timer.Enabled = true;
             timer.Start();
+            Console.WriteLine("started program at {0:HH:mm:ss.fff}", DateTime.Now);
         }
 
         /// <summary>
@@ -41,11 +42,13 @@ namespace ProjectAutoBackup
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             DateTime currentDate = DateTime.Now;
+            Console.WriteLine("start backup at {0:HH:mm:ss.fff}", e.SignalTime);
 
             BackupFolders(currentDate);
             DeleteOlderDirs(pathFolderDestCa, currentDate);
 
-            Console.WriteLine("backup at {0:HH:mm:ss.fff}", e.SignalTime);
+            currentDate = DateTime.Now;
+            Console.WriteLine("end backup at {0:HH:mm:ss.fff}", e.SignalTime);
         }
 
         /// <summary>
@@ -69,6 +72,7 @@ namespace ProjectAutoBackup
 
                     if (copied)
                     {
+                        Console.WriteLine("dir copied : " + path);
                     }
                 }
             }
@@ -177,6 +181,7 @@ namespace ProjectAutoBackup
                 if (System.IO.Directory.Exists(path))
                 {
                     System.IO.Directory.Delete(path, true);
+                    Console.WriteLine("dir deleted : " + path);
                     bdel = true;
                 }
                 else
